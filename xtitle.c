@@ -158,6 +158,14 @@ void output_title(xcb_window_t win, char *format, char *title, size_t len, bool 
 			}
 		}
 	}
+
+	unsigned int i = 0;
+	for (i=0; i<strlen(title); i++){
+		if (title[i]<32 || title[i]> 126) {
+			title[i] = ' ';
+		}
+	}
+
 	if (escaped) {
 		char *out = expand_escapes(title);
 		printf(format == NULL ? FORMAT : format, out);
